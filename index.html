@@ -1,9 +1,23 @@
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harpa Cristã</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Harpa Cristã</h1>
-    <p>Olá, mundo!</p>
+    <div id="header">
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Harpa Cristã" />
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="container">
+      <div id="hymns-grid" class="hymns-grid"></div>
+    </div>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
