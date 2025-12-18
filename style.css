@@ -123,6 +123,7 @@ r {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .hymn-card:hover {
@@ -142,7 +143,7 @@ r {
   font-size: 1.1rem;
   color: #8b949e;
   line-height: 1.3;
-  margin: 0 10px 0 10px;
+  margin: 0 10px 2.5rem 10px;
 }
 
 .no-results {
@@ -155,20 +156,28 @@ r {
 
 
 audio {
-  height: 3.5rem;
-  width: 3.5rem;
-  margin: 20px 8px 20px 20px;
+  height: 2rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0;
 }
 
-audio::-webkit-media-controls-panel { background-color: #58a6ff; }
+audio::-webkit-media-controls-panel { 
+  background-color: #58a6ff;
+  border-radius: 0;
+}
 
-audio::-webkit-media-controls-play-button { display: block; }
-
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline {
+  display: block;
+}
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-mute-button,
 audio::-webkit-media-controls-volume-slider-container,
 audio::-webkit-media-controls-volume-slider,
 audio::-webkit-media-controls-seek-back-button,
