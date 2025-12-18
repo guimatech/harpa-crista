@@ -18,6 +18,11 @@ function renderHymns(hymnsToRender) {
     card.innerHTML = `
       <div class="hymn-number">${hymn.number}</div>
       <div class="hymn-title">${hymn.title}</div>
+      <audio onended="nextLoad()" controls="" controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar" "="" title="${hymn.title}"><br>
+        <source type="audio/mpeg" src="https://harpa.nyc3.digitaloceanspaces.com/${hymn.number.toString().padStart(3, '0')}.mp3"><br>
+        <source type="audio/ogg" src="https://harpa.nyc3.digitaloceanspaces.com/${hymn.number.toString().padStart(3, '0')}.ogg"><br>
+        <a href="https://harpa.nyc3.digitaloceanspaces.com/${hymn.number.toString().padStart(3, '0')}.mp3">${hymn.title}</a><br>
+      </audio>
     `;
     hymnsGrid.appendChild(card);
   });
