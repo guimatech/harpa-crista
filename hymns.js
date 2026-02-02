@@ -2577,4 +2577,3 @@ const hymns = [
     "title": "Hino da Proclamação da República do Brasil"
   }
 ];
-export default hymns;
