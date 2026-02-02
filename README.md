@@ -1,6 +1,6 @@
-# Harpa Cristã - 640 Hinos
+# Harpa Cristã - PWA
 
-Uma aplicação web moderna e responsiva para visualizar todos os 640 hinos da Harpa Cristã. Desenvolvida com **Next.js 14**, **React 18** e **TypeScript**, oferece uma experiência de usuário otimizada para busca e leitura dos hinos.
+Uma aplicação web moderna e responsiva para visualizar todos os 640 hinos da Harpa Cristã. Desenvolvida com **Next.js 15**, **React 19** e **TypeScript**, oferece uma experiência de usuário otimizada para busca e leitura dos hinos.
 
 ## ✨ Funcionalidades
 
@@ -12,6 +12,29 @@ Uma aplicação web moderna e responsiva para visualizar todos os 640 hinos da H
 - **Performance otimizada** com Next.js e SSG
 - **Acessibilidade** com suporte a leitores de tela
 - **SEO otimizado** com meta tags dinâmicas
+- **📱 PWA (Progressive Web App)** - Instalável e funciona offline
+- **🔄 Service Worker** para cache inteligente
+- **📶 Indicador de conectividade** online/offline
+
+## 📱 Instalação no Smartphone
+
+### Android
+1. Abra o site no Chrome
+2. Toque no banner "Instalar Harpa Cristã" ou
+3. Menu (⋮) → "Instalar app" ou "Adicionar à tela inicial"
+4. Confirme a instalação
+
+### iPhone/iPad
+1. Abra o site no Safari
+2. Toque no botão de compartilhar (□↗)
+3. Selecione "Adicionar à Tela de Início"
+4. Confirme tocando em "Adicionar"
+
+### Recursos Offline
+- ✅ **Todos os hinos** ficam disponíveis offline
+- ✅ **Busca funciona** sem internet
+- ✅ **Interface completa** mesmo desconectado
+- ✅ **Atualizações automáticas** quando online
 
 ## 🚀 Deploy na Vercel
 
@@ -26,11 +49,12 @@ Este projeto está otimizado para deploy automático na Vercel:
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Next.js 15** - Framework React com SSG
-- **React 19** - Biblioteca de interface
-- **TypeScript** - Tipagem estática
+- **Next.js 15.1.3** - Framework React com SSG (versão segura)
+- **React 18.3** - Biblioteca de interface (versão estável)
+- **TypeScript 5.7** - Tipagem estática
 - **CSS3** - Estilização moderna com CSS Grid e Flexbox
 - **Google Fonts** - Tipografia Inter
+- **PWA** - Progressive Web App com Service Worker
 - **Vercel** - Hospedagem e deploy
 
 ## 🏃‍♂️ Executando Localmente
