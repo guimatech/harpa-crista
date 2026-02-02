@@ -1,23 +1,33 @@
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harpa Cristã</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="header">
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Harpa Cristã" />
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
-      </div>
-    </div>
-    <div class="container">
-      <div id="hymns-grid" class="hymns-grid"></div>
-    </div>
-    <script type="module" src="script.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Harpa Cristã – Hinos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="hymns.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Harpa Cristã</h1>
+    <input id="searchInput" type="search" placeholder="Buscar por número ou título..." />
+  </header>
+
+  <main class="app-main">
+    <aside class="hymn-list-container">
+      <ul id="hymnList" class="hymn-list"></ul>
+    </aside>
+
+    <section class="hymn-viewer">
+      <div id="hymnMeta" class="hymn-meta"></div>
+      <div id="hymnLyrics" class="hymn-lyrics"></div>
+
+      <section id="audioSection" class="audio-section">
+        <h2>Versões em áudio</h2>
+        <div id="audioPlayers" class="audio-players"></div>
+      </section>
+    </section>
+  </main>
+</body>
 </html>

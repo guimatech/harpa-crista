@@ -1,11 +1,28 @@
 const hymns = [
   {
-    "number": 1,
-    "title": "Chuvas de Graça"
+    id: 1,
+    number: 1,
+    title: "Chuvas de Graça",
+    chorus: "Chuvas de graça, <br> Chuvas pedimos, Senhor; <br> Manda-nos chuvas constantes, <br> Chuvas do Consolador.",
+    verses: [
+      "Deus prometeu com certeza <br> Chuvas de graça mandar; <br> Ele nos dá fortaleza, <br> E ricas bênçãos sem par",
+      "Cristo nos tem concedido <br> O santo Consolador, <br> De plena paz nos enchido, <br> Para o reinado do amor.",
+      "Dá-nos, Senhor, amplamente, <br> Teu grande gozo e poder; <br> Fonte de amor permanente, <br> Põe dentro de nosso ser.",
+      "Faze os teus servos piedosos, <br> Dá-lhes virtude e valor, <br> Dando os teus dons preciosos, <br> Do santo Preceptor."
+    ],
+    altAudio: []
   },
   {
-    "number": 2,
-    "title": "Saudosa Lembrança"
+    id: 2,
+    number: 2,
+    title: "Saudosa Lembrança",
+    chorus: "Sim, eu porfiarei por essa terra de além; <br> E lá terminarei as muitas lutas de aquém; <br> Lá está meu bom Senhor, ao qual eu desejo ver; <br> Ele é tudo p’ra mim, e sem Ele não posso viver.",
+    verses: [
+      "Oh! que saudosa lembrança <br> Tenho de ti, ó Sião, <br> Terra que eu tanto amo, <br> Pois és do meu coração. <br> Eu para ti voarei, <br> Quando o Senhor meu voltar; <br> Pois Ele foi para o céu, <br> E breve vem me buscar.",
+      "Bela, mui bela, é a esperança, <br> Dos que vigiam por ti, <br> Pois eles recebem força, <br> Que só se encontra ali; <br> Os que procuram chegar <br> Ao teu regaço, ó Sião, <br> Livres serão de pecar <br> E de toda a tentação.",
+      "Diz a Sagrada Escritura, <br> Que são formosos os pés <br> Daqueles que boas novas <br> Levam para os infiéis; <br> E, se tão belo é falar <br> Dessas grandezas, aqui, <br> Que não será o gozar <br> A graça que existe ali!"
+    ],
+    altAudio: []
   },
   {
     "number": 3,

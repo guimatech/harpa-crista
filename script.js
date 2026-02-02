@@ -1,53 +1,147 @@
-import hymns from "./hymns.js";
+// Arquivo: script.js
 
-const searchInput = document.getElementById('search-input');
-const hymnsGrid = document.getElementById('hymns-grid');
+function normalizeText(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
 
-// Função para renderizar os hinos
-function renderHymns(hymnsToRender) {
-  hymnsGrid.innerHTML = '';
-  
-  if (hymnsToRender.length === 0) {
-    hymnsGrid.innerHTML = '<div class="no-results">Nenhum hino encontrado</div>';
-    return;
-  }
-  
-  hymnsToRender.forEach(hymn => {
-    const card = document.createElement('div');
-    card.className = 'hymn-card';
-    card.innerHTML = `
-      <div class="hymn-number">${hymn.number}</div>
-      <div class="hymn-title">${hymn.title}</div>
-      <audio onended="nextLoad()" controls="" controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar" "="" title="${hymn.title}"><br>
-        <source type="audio/mpeg" src="https://harpa.nyc3.digitaloceanspaces.com/${hymn.number.toString().padStart(3, '0')}.mp3"><br>
-        <source type="audio/ogg" src="https://harpa.nyc3.digitaloceanspaces.com/${hymn.number.toString().padStart(3, '0')}.ogg"><br>
-        <a href="https://harpa.nyc3.digitaloceanspaces.com/${hymn.number.toString().padStart(3, '0')}.mp3">${hymn.title}</a><br>
-      </audio>
-    `;
-    hymnsGrid.appendChild(card);
+function renderHymnList(filtered = hymns) {
+  const listEl = document.getElementById("hymnList");
+  listEl.innerHTML = "";
+
+  filtered.forEach((hymn, idx) => {
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.dataset.index = hymns.indexOf(hymn);
+
+    const numberSpan = document.createElement("span");
+    numberSpan.className = "hymn-number";
+    numberSpan.textContent = String(hymn.number).padStart(3, "0");
+
+    const titleSpan = document.createElement("span");
+    titleSpan.className = "hymn-title";
+    titleSpan.textContent = hymn.title;
+
+    btn.appendChild(numberSpan);
+    btn.appendChild(titleSpan);
+
+    btn.addEventListener("click", () => {
+      document
+        .querySelectorAll(".hymn-list button.active")
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderHymn(hymn);
+    });
+
+    li.appendChild(btn);
+    listEl.appendChild(li);
+
+    if (idx === 0 && !document.querySelector(".hymn-list button.active")) {
+      btn.classList.add("active");
+      renderHymn(hymn);
+    }
   });
 }
 
-// Função para filtrar hinos
-function filterHymns(searchTerm) {
-  const term = searchTerm.toLowerCase().trim();
-  
-  if (term === '' || term === 'harpa cristã') {
-    return hymns;
+function renderHymn(hymn) {
+  const metaEl = document.getElementById("hymnMeta");
+  const lyricsEl = document.getElementById("hymnLyrics");
+  const audioPlayersEl = document.getElementById("audioPlayers");
+  const audioSectionEl = document.getElementById("audioSection");
+
+  metaEl.innerHTML = "";
+  lyricsEl.innerHTML = "";
+  audioPlayersEl.innerHTML = "";
+
+  // meta
+  const numberDiv = document.createElement("div");
+  numberDiv.className = "hymn-meta-number";
+  numberDiv.textContent = `Hino ${hymn.number}`;
+
+  const titleDiv = document.createElement("div");
+  titleDiv.className = "hymn-meta-title";
+  titleDiv.textContent = hymn.title;
+
+  metaEl.appendChild(numberDiv);
+  metaEl.appendChild(titleDiv);
+
+  // letra
+  const inner = document.createElement("div");
+  inner.className = "hymn-lyrics-inner";
+
+  hymn.verses.forEach((verse, idx) => {
+    const verseBlock = document.createElement("div");
+    verseBlock.className = "hymn-verse";
+
+    const label = document.createElement("div");
+    label.className = "hymn-verse-number";
+    label.textContent = `Verso ${idx + 1}`;
+
+    const text = document.createElement("div");
+    text.innerHTML = verse;
+
+    verseBlock.appendChild(label);
+    verseBlock.appendChild(text);
+    inner.appendChild(verseBlock);
+  });
+
+  if (hymn.chorus && hymn.chorus.trim()) {
+    const chorusDiv = document.createElement("div");
+    chorusDiv.className = "chorus refrain-highlight";
+    chorusDiv.innerHTML = hymn.chorus;
+    inner.appendChild(chorusDiv);
   }
-  
-  return hymns.filter(hymn => {
-    const numberMatch = hymn.number.toString().includes(term);
-    const titleMatch = hymn.title.toLowerCase().includes(term);
-    return numberMatch || titleMatch;
+
+  lyricsEl.appendChild(inner);
+
+  // players de áudio alternativos
+  if (Array.isArray(hymn.altAudio) && hymn.altAudio.length > 0) {
+    audioSectionEl.style.display = "block";
+    hymn.altAudio.forEach((src, i) => {
+      const wrapper = document.createElement("div");
+      const label = document.createElement("div");
+      label.className = "hymn-verse-number";
+      label.textContent = `Versão ${i + 1}`;
+
+      const audio = document.createElement("audio");
+      audio.controls = true;
+      audio.src = src; // URL de áudio (não o link do YouTube direto)
+
+      wrapper.appendChild(label);
+      wrapper.appendChild(audio);
+      audioPlayersEl.appendChild(wrapper);
+    });
+  } else {
+    audioSectionEl.style.display = "none";
+  }
+}
+
+function setupSearch() {
+  const input = document.getElementById("searchInput");
+  input.addEventListener("input", () => {
+    const q = normalizeText(input.value.trim());
+    if (!q) {
+      renderHymnList(hymns);
+      return;
+    }
+
+    const isNumber = /^\d+$/.test(q);
+    const filtered = hymns.filter(h => {
+      if (isNumber) {
+        return String(h.number).includes(q);
+      }
+      const titleNorm = normalizeText(h.title);
+      return titleNorm.includes(q);
+    });
+
+    renderHymnList(filtered.length ? filtered : hymns);
   });
 }
 
-// Event listener para o input de pesquisa
-searchInput.addEventListener('input', (e) => {
-  const filteredHymns = filterHymns(e.target.value);
-  renderHymns(filteredHymns);
+document.addEventListener("DOMContentLoaded", () => {
+  if (!Array.isArray(hymns) || hymns.length === 0) return;
+  renderHymnList(hymns);
+  setupSearch();
 });
-
-// Renderizar todos os hinos inicialmente
-renderHymns(hymns);
