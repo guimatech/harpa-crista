@@ -1,4 +1,13 @@
-const hymns = [
+export interface Hymn {
+  id: number;
+  number: number;
+  title: string;
+  chorus: string;
+  verses: string[];
+  altAudio: string[];
+}
+
+export const hymns: Hymn[] = [
   {
     id: 1,
     number: 1,

@@ -1,0 +1,93 @@
+'use client'
+
+import { useEffect } from 'react'
+import { type Hymn } from '../data/hymns'
+
+interface HymnViewerProps {
+  hymn: Hymn | null
+}
+
+export default function HymnViewer({ hymn }: HymnViewerProps) {
+  useEffect(() => {
+    if (hymn) {
+      document.title = `${hymn.number} - ${hymn.title} | Harpa Cristã`
+    } else {
+      document.title = 'Harpa Cristã - 640 Hinos'
+    }
+  }, [hymn])
+
+  if (!hymn) {
+    return (
+      <section className="hymn-viewer">
+        <div className="viewer-content">
+          <div className="empty-state">
+            <h3>Selecione um hino</h3>
+            <p>Escolha um hino da lista ao lado para visualizar a letra completa.</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  const hasContent = (hymn.verses && hymn.verses.length > 0) || (hymn.chorus && hymn.chorus.trim())
+
+  return (
+    <section className="hymn-viewer">
+      <div className="viewer-content">
+        <div className="hymn-meta">
+          <div className="hymn-meta-number">Hino {hymn.number}</div>
+          <div className="hymn-meta-title">{hymn.title}</div>
+        </div>
+
+        <div className="hymn-lyrics">
+          {hasContent ? (
+            <div className="hymn-lyrics-inner">
+              {/* Verses */}
+              {hymn.verses && hymn.verses.map((verse, idx) => (
+                <div key={idx} className="hymn-verse">
+                  <div className="hymn-verse-number">Verso {idx + 1}</div>
+                  <div dangerouslySetInnerHTML={{ __html: verse }} />
+                </div>
+              ))}
+
+              {/* Chorus */}
+              {hymn.chorus && hymn.chorus.trim() && (
+                <div className="hymn-verse chorus">
+                  <div className="hymn-verse-number">Coro</div>
+                  <div dangerouslySetInnerHTML={{ __html: hymn.chorus }} />
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <h3>Letra não disponível</h3>
+              <p>A letra deste hino ainda não foi adicionada.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Audio Section */}
+        {hymn.altAudio && hymn.altAudio.length > 0 && (
+          <section className="audio-section">
+            <h3>Versões em áudio</h3>
+            <div className="audio-players">
+              {hymn.altAudio.map((src, i) => (
+                <div key={i}>
+                  <div className="hymn-verse-number">Versão {i + 1}</div>
+                  <audio
+                    controls
+                    preload="none"
+                    aria-label={`Áudio do hino ${hymn.number} - Versão ${i + 1}`}
+                  >
+                    <source src={src} />
+                    Seu navegador não suporta o elemento de áudio.
+                  </audio>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </section>
+  )
+}
