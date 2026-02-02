@@ -79,7 +79,7 @@ body {
 .app-header {
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
-  padding: var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-2);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -121,21 +121,23 @@ body {
 .search-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
+  padding: 0 var(--spacing-2);
 }
 
 .search-input {
   width: 100%;
-  padding: var(--spacing-3) var(--spacing-10) var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-base);
+  padding: var(--spacing-4) var(--spacing-12) var(--spacing-4) var(--spacing-4);
+  font-size: var(--font-size-lg);
   font-weight: 400;
   color: var(--text-primary);
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   border-radius: var(--radius-lg);
   outline: none;
   transition: all 0.2s ease;
   text-align: center;
+  min-height: 56px;
 }
 
 .search-input:focus {
@@ -151,11 +153,11 @@ body {
 
 .search-icon {
   position: absolute;
-  right: var(--spacing-3);
+  right: var(--spacing-4);
   top: 50%;
   transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   color: var(--text-muted);
   pointer-events: none;
 }
@@ -414,22 +416,25 @@ body {
   }
   
   .app-header {
-    padding: var(--spacing-3);
+    padding: var(--spacing-2) var(--spacing-3);
   }
   
   .search-container {
     max-width: 100%;
+    padding: 0;
   }
   
   .search-input {
-    font-size: var(--font-size-sm);
-    padding: var(--spacing-2) var(--spacing-8) var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-base);
+    padding: var(--spacing-4) var(--spacing-12) var(--spacing-4) var(--spacing-4);
+    min-height: 56px;
+    border-width: 2px;
   }
   
   .search-icon {
-    width: 16px;
-    height: 16px;
-    right: var(--spacing-2);
+    width: 20px;
+    height: 20px;
+    right: var(--spacing-4);
   }
   
   .hymn-list-container {
@@ -458,6 +463,23 @@ body {
 @media (max-width: 480px) {
   .app-header {
     padding: var(--spacing-2);
+  }
+  
+  .search-container {
+    padding: 0;
+  }
+  
+  .search-input {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-4) var(--spacing-12) var(--spacing-4) var(--spacing-4);
+    min-height: 56px;
+    border-width: 2px;
+  }
+  
+  .search-icon {
+    width: 20px;
+    height: 20px;
+    right: var(--spacing-4);
   }
   
   .app-main {
@@ -512,6 +534,24 @@ button:focus-visible,
 input:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
+}
+
+/* Melhorias para touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .search-input {
+    min-height: 60px;
+    font-size: var(--font-size-lg);
+  }
+  
+  .hymn-list button {
+    min-height: 48px;
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+  
+  .pwa-install-button {
+    min-height: 44px;
+    padding: var(--spacing-3) var(--spacing-5);
+  }
 }
 
 /* PWA Install Banner */
