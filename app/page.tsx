@@ -95,17 +95,11 @@ export default function Home() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <div className="header-content">
-          <h1 className="app-title">
-            <span className="title-main">Harpa Cristã</span>
-            <span className="title-sub">640 Hinos</span>
-          </h1>
-          <SearchBar 
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Buscar por número ou título..."
-          />
-        </div>
+        <SearchBar 
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Harpa Cristã"
+        />
       </header>
 
       <main className="app-main">

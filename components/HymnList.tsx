@@ -12,10 +12,6 @@ export default function HymnList({ hymns, selectedHymn, onHymnSelect }: HymnList
   if (hymns.length === 0) {
     return (
       <aside className="hymn-list-container">
-        <div className="list-header">
-          <h2>Hinos</h2>
-          <span className="hymn-count">0 hinos</span>
-        </div>
         <div className="empty-state">
           <h3>Nenhum hino encontrado</h3>
           <p>Tente buscar por outro termo ou número</p>
@@ -26,12 +22,6 @@ export default function HymnList({ hymns, selectedHymn, onHymnSelect }: HymnList
 
   return (
     <aside className="hymn-list-container">
-      <div className="list-header">
-        <h2>Hinos</h2>
-        <span className="hymn-count">
-          {hymns.length} {hymns.length === 1 ? 'hino' : 'hinos'}
-        </span>
-      </div>
       <ul className="hymn-list">
         {hymns.map((hymn) => (
           <li key={hymn.id}>

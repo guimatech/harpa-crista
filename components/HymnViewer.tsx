@@ -12,7 +12,7 @@ export default function HymnViewer({ hymn }: HymnViewerProps) {
     if (hymn) {
       document.title = `${hymn.number} - ${hymn.title} | Harpa Cristã`
     } else {
-      document.title = 'Harpa Cristã - 640 Hinos'
+      document.title = 'Harpa Cristã'
     }
   }, [hymn])
 
@@ -42,21 +42,26 @@ export default function HymnViewer({ hymn }: HymnViewerProps) {
         <div className="hymn-lyrics">
           {hasContent ? (
             <div className="hymn-lyrics-inner">
-              {/* Verses */}
-              {hymn.verses && hymn.verses.map((verse, idx) => (
-                <div key={idx} className="hymn-verse">
-                  <div className="hymn-verse-number">Verso {idx + 1}</div>
-                  <div dangerouslySetInnerHTML={{ __html: verse }} />
+              {/* First verse */}
+              {hymn.verses && hymn.verses.length > 0 && (
+                <div className="hymn-verse">
+                  <div dangerouslySetInnerHTML={{ __html: hymn.verses[0] }} />
                 </div>
-              ))}
+              )}
 
-              {/* Chorus */}
+              {/* Chorus after first verse */}
               {hymn.chorus && hymn.chorus.trim() && (
                 <div className="hymn-verse chorus">
-                  <div className="hymn-verse-number">Coro</div>
                   <div dangerouslySetInnerHTML={{ __html: hymn.chorus }} />
                 </div>
               )}
+
+              {/* Remaining verses */}
+              {hymn.verses && hymn.verses.slice(1).map((verse, idx) => (
+                <div key={idx + 1} className="hymn-verse">
+                  <div dangerouslySetInnerHTML={{ __html: verse }} />
+                </div>
+              ))}
             </div>
           ) : (
             <div className="empty-state">

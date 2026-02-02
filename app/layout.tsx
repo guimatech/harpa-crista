@@ -5,24 +5,24 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Harpa Cristã - 640 Hinos',
-  description: 'Harpa Cristã completa com todos os 640 hinos. Busque por número ou título e visualize as letras completas.',
+  title: 'Harpa Cristã',
+  description: 'Harpa Cristã completa com todos os hinos. Busque por número ou título e visualize as letras completas.',
   keywords: ['harpa cristã', 'hinos', 'assembleia de deus', 'cristão', 'música gospel'],
   authors: [{ name: 'Seu Nome' }],
   creator: 'Seu Nome',
   publisher: 'Harpa Cristã',
   robots: 'index, follow',
   openGraph: {
-    title: 'Harpa Cristã - 640 Hinos',
-    description: 'Harpa Cristã completa com todos os 640 hinos. Busque por número ou título e visualize as letras completas.',
+    title: 'Harpa Cristã',
+    description: 'Harpa Cristã completa com todos os hinos. Busque por número ou título e visualize as letras completas.',
     type: 'website',
     locale: 'pt_BR',
     siteName: 'Harpa Cristã'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Harpa Cristã - 640 Hinos',
-    description: 'Harpa Cristã completa com todos os 640 hinos. Busque por número ou título e visualize as letras completas.'
+    title: 'Harpa Cristã',
+    description: 'Harpa Cristã completa com todos os hinos. Busque por número ou título e visualize as letras completas.'
   },
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#4299e1'
