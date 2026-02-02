@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { hymns, type Hymn } from '../data/hymns'
 import HymnList from '../components/HymnList'
 import HymnViewer from '../components/HymnViewer'
@@ -59,7 +59,7 @@ export default function Home() {
     }
   }
 
-  const handleKeyNavigation = (direction: 'up' | 'down') => {
+  const handleKeyNavigation = useCallback((direction: 'up' | 'down') => {
     if (!selectedHymn || filteredHymns.length === 0) return
 
     const currentIndex = filteredHymns.findIndex(h => h.id === selectedHymn.id)
@@ -73,7 +73,7 @@ export default function Home() {
     }
 
     setSelectedHymn(filteredHymns[nextIndex])
-  }
+  }, [selectedHymn, filteredHymns])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -90,7 +90,7 @@ export default function Home() {
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [selectedHymn, filteredHymns])
+  }, [handleKeyNavigation])
 
   return (
     <div className="app-container">

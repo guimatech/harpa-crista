@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   creator: 'Seu Nome',
   publisher: 'Harpa Cristã',
   robots: 'index, follow',
+  metadataBase: new URL('https://harpa-crista.vercel.app'),
   openGraph: {
     title: 'Harpa Cristã',
     description: 'Harpa Cristã completa com todos os hinos. Busque por número ou título e visualize as letras completas.',
@@ -23,9 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Harpa Cristã',
     description: 'Harpa Cristã completa com todos os hinos. Busque por número ou título e visualize as letras completas.'
-  },
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#4299e1'
+  }
 }
 
 export default function RootLayout({

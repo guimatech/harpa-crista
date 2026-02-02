@@ -26,8 +26,8 @@ Este projeto está otimizado para deploy automático na Vercel:
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Next.js 14** - Framework React com SSG
-- **React 18** - Biblioteca de interface
+- **Next.js 15** - Framework React com SSG
+- **React 19** - Biblioteca de interface
 - **TypeScript** - Tipagem estática
 - **CSS3** - Estilização moderna com CSS Grid e Flexbox
 - **Google Fonts** - Tipografia Inter
