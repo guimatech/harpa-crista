@@ -70,28 +70,6 @@ export default function HymnViewer({ hymn }: HymnViewerProps) {
             </div>
           )}
         </div>
-
-        {/* Audio Section */}
-        {hymn.altAudio && hymn.altAudio.length > 0 && (
-          <section className="audio-section">
-            <h3>Versões em áudio</h3>
-            <div className="audio-players">
-              {hymn.altAudio.map((src, i) => (
-                <div key={i}>
-                  <div className="hymn-verse-number">Versão {i + 1}</div>
-                  <audio
-                    controls
-                    preload="none"
-                    aria-label={`Áudio do hino ${hymn.number} - Versão ${i + 1}`}
-                  >
-                    <source src={src} />
-                    Seu navegador não suporta o elemento de áudio.
-                  </audio>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
       </div>
     </section>
   )
